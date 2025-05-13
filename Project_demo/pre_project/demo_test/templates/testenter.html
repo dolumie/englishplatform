@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test page</title>
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+        <!-- fonts -->
+        <link rel="stylesheet" href= {%static "style/testenterstyle.css"%}>
+        <link rel="stylesheet" href= {% static "style/reset.css"%}>
+    </head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1 id="question">Alex ... to college every day.</h1>
+        </div>
+
+        <div id="answers-btn">
+            <button class="btn">goes</button>
+            <button class="btn">went</button>
+            <button class="btn">go</button>
+            <button class="btn">gone</button>
+        </div>
+        <button id="btn-next">Next</button>
+    </div>
+    <script src={%static "script/scripttest.js"%} ></script>
+</body>
+</html>

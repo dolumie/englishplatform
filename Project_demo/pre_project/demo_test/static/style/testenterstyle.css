@@ -1,0 +1,119 @@
+*, body {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    background-color: #F3EBD6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+
+.container {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid black;
+    box-shadow: 10px 10px rgba(168, 162, 86, 1);
+    width: 100%;
+    height: 100%;
+    max-height: 620px;
+    max-width: 1200px;
+    /* padding: 20px; */
+}
+/* !полоска */
+
+.header {
+    background-color: #F6B7A8;
+    padding: 15px;
+    text-align: center;
+    color: #000;
+    border-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+#question {
+    font-size: 48px; 
+    color: black;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+}
+/* !кнопки */
+
+#answers-btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+.btn {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid black;
+    box-shadow: 3px 3px rgba(168,162,86,1);
+    font-size: 48px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn:hover:not([disabled]) {
+    background-color: #D4CA8C;
+}
+.btn:disabled {
+    cursor: no-drop;
+}
+#btn-next {
+    background-color: #FC9584;
+    padding: 12px 24px;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+    transition: background 0.3 ease;
+    cursor: pointer;
+    display: none;
+}
+#btn-next:hover {
+    background-color: #f57a65;
+}
+.correct {
+    background: #A8A256;
+}
+.wrong {
+    background: #EB5A5A;
+}
+/* !адаптив */
+
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+    .header h2 {
+        font-size: 20px;
+    }
+    .answer {
+        padding: 12px;
+        font-size: 14px;
+    }
+    #btn-next {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+@media (max-width: 400px) {
+    .answers {
+        grid-template-columns: 1fr;
+    }
+    .answer {
+        font-size: 14px;
+        padding: 10px;
+    }
+    #btn-next {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}

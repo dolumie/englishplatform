@@ -1,0 +1,74 @@
+*, body {
+    box-sizing: border-box;
+}
+body {
+    background-color: #F3EBD6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.container {
+    padding: 20px;
+}
+
+/* !текст */
+.label-test-tasks {
+    font-size: 60px;
+    color: #A76D45;
+    margin-bottom: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    font-family: 'Montserrat Alternates', sans-serif;
+
+}
+.label-check {
+    color: #A76D45;
+    font-size: 22px;
+    margin-bottom: 30px;
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
+/* !картояки */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    column-gap: 10px; 
+    row-gap: 35px;
+    justify-items: center; 
+}
+.card {
+    width: 305px;
+    height: 195px;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 12px;
+    box-shadow: 10px 10px rgba(168, 162, 86, 1);
+    transition: transform 0.2 ease;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card.pink {
+    box-shadow: 10px 10px rgba(243, 183, 168, 1);
+}
+
+@media (max-width: 1000px) {
+    .cards-grid {
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+@media (max-width: 600px) {
+.cards-grid {
+    grid-template-columns: 1fr;
+}
+.card {
+    width: 90%;
+}
+.label-test-tasks {
+    font-size: 24px;
+}
+.label-check {
+    font-size: 12px;
+}
+}
