@@ -11,6 +11,10 @@ def Tests(request):
 
 def Testner(request):
     return render(request,"testenter.html")
+def Dictionary(request):
+    return render(request,"dictionary.html")
+
+
 
 class Dictionary_en_ru:
     def __init__(self):
@@ -27,6 +31,10 @@ def Update_Word(request):
     dect = dictionary.dicti()
     random_pair = random.choice(dect)
     return JsonResponse({'word':random_pair[0],'translate':random_pair[1]})
+def Get_dictionary(request):
+    dictionary=Dictionary_en_ru()
+    dect = dictionary.dicti()
+    return JsonResponse({'dictionary':dect})
 
 class Question:
     def __init__(self):

@@ -23,5 +23,7 @@ urlpatterns = [
     path('',views.Main,name='main'),
     path('api/update-word',views.Update_Word,name="update_word"),
     path('tests',views.Tests,name="tests"),
-    path('testner',views.Testner,name="testner")
+    path('testner',views.Testner,name="testner"),
+    path('api/get-dictionary',views.Get_dictionary,name="get_dictionary"),
+    path('dictionary',views.Dictionary,name="dictionary")
 ]
