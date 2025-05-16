@@ -22,8 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Main,name='main'),
     path('api/update-word',views.Update_Word,name="update_word"),
-    path('tests',views.Tests,name="tests"),
+    path('tests',views.TestsView,name="tests"),
     path('testner',views.Testner,name="testner"),
     path('api/get-dictionary',views.Get_dictionary,name="get_dictionary"),
-    path('dictionary',views.Dictionary,name="dictionary")
+    path('dictionary',views.Dictionary,name="dictionary"),
+    path('api/get-tests',views.Get_tests,name="get_tests"),
+    path('api/get-test/<int:test_id>',views.Get_test,name="get_test_id")
 ]

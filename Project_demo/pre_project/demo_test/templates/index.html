@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap" rel="stylesheet">
     <!-- fonts -->
     <link rel="stylesheet" href={% static "style/reset.css"%}>
-    <link rel="stylesheet" href={% static "style/style.css" %}?version=2>
+    <link rel="stylesheet" href={% static "style/index_style.css" %}?version=2>
 
 </head>
 <body>
@@ -38,7 +38,7 @@
                
                 <button onclick="window.location.href='{% url 'tests' %}'" class="btn tests">тесты</button>
                 <button class="btn rules">правила</button>
-                <button onclick="window.location.href='{% url 'dictionary' %}'" class="btn dict">словарь</button>
+                <button class="btn dict" onclick="window.location.href='{% url 'dictionary' %}'">словарь</button>
             </div>
                 
         </main>

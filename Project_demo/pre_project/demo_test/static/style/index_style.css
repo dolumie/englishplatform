@@ -1,0 +1,241 @@
+*, body {
+    box-sizing: border-box;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 700;
+}
+body {
+    background-color: #F3EBD6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;    
+}
+
+/* !шапка */
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 120px;
+}
+.btn-username {
+    background-color: #FC9584;
+    padding: 12px 24px;
+    font-size: 20px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+    transition: background 0.3 ease;
+}
+.btn-username:hover {
+    background-color: #f57a65;
+}
+/* ?основной контент */
+main {
+    text-align: center;
+}
+
+/* !слово дня */
+
+.word-of-the-day {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 3px 3px rgba(0,0,0,0.25);
+    margin-bottom: 120px;
+}
+.commas {
+    height: auto;
+    font-size: 96px;
+    color: #A8A256;
+    line-height: 1;
+}
+.word-translate {
+    
+    font-size: 36px;
+    /* color: #A76D45; */
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+#word{
+    font-size: 48px;
+    color: #FC9584;
+}
+#translate{
+    color: #A76D45;
+}
+
+.label-word-of-the-day {
+    font-size: 20px;
+    color: #F6B7A8;
+    line-height: 1;
+}
+
+/* *кнопки */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.btn {
+    flex: 1 1 300px;
+    max-height: 375px;
+    aspect-ratio: 1/1;
+    padding: 15px 30px;
+    font-size: 36px;
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 3px 3px rgba(210,157,145,1);
+    transition: transform 0.2 ease;
+}
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.tests {
+    background-color: #F6B7A8;
+    color: #A76D45;
+}
+
+.rules {
+    background-color: #D4CA8C;
+    color: #A76D45;
+    box-shadow: 3px 3px rgba(168,162,86,1);
+
+}
+
+.dict {
+    background-color: #F6B7A8;
+    color: #A76D45;
+}
+
+/* !адаптив */
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        justify-content: center;
+        margin-bottom: 80px;
+    }
+
+    .btn-username {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    .word-of-the-day {
+        margin-bottom: 80px;
+        padding: 15px;
+    }
+
+    .word-translate {
+        font-size: 30px;
+    }
+
+    .label-word-of-the-day {
+        font-size: 18px;
+    }
+
+    .btn {
+        width: 300px;
+        height: 300px;
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+
+    .btn-username {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .word-of-the-day {
+        margin-bottom: 60px;
+        padding: 10px;
+    }
+
+    .commas {
+        font-size: 70px;
+    }
+
+    .word-translate {
+        font-size: 28px;
+    }
+
+    .label-word-of-the-day {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 250px;
+        height: 250px;
+        font-size: 28px;
+    }
+
+    .buttons {
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .btn-username {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .word-of-the-day {
+        margin-bottom: 40px;
+        padding: 10px;
+    }
+
+    .commas {
+        font-size: 50px;
+    }
+
+    .word-translate {
+        font-size: 24px;
+    }
+
+    .label-word-of-the-day {
+        font-size: 14px;
+    }
+
+    .btn {
+        width: 200px;
+        height: 200px;
+        font-size: 24px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

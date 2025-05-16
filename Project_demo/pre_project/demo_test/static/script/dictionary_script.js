@@ -69,20 +69,14 @@ function displayWords(letter) {
         const englishWord = wordPair[0];
         const translation = wordPair[1];
         word_element.textContent = englishWord;
+        word_element.style.color = "#FC9584"; // Set English word color
         
         // Add click event for popup
         word_element.addEventListener("click", (e) => {
             e.stopPropagation();
             
-            // Set popup content
-            popupContent.innerHTML = `
-                <div style="margin-bottom: 10px;">
-                    <strong>English:</strong> ${englishWord}
-                </div>
-                <div>
-                    <strong>Translation:</strong> ${translation}
-                </div>
-            `;
+            // Set popup content with styled translation
+            popupContent.innerHTML = `<div style="color: #A76D45;">${translation}</div>`;
             
             // Position popup near the clicked word
             const rect = word_element.getBoundingClientRect();

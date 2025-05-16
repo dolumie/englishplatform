@@ -34,4 +34,5 @@ class Migration(migrations.Migration):
                 ('test', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='demo_test.tests')),
             ],
         ),
+        
     ]

@@ -7,27 +7,37 @@
     <title>Tests page</title>
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;700&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
     <!-- fonts -->
     <link rel="stylesheet" href={%static "style/tests.css"%}>
-    <link rel="stylesheet" href={% static "style/reset.css"%}>
+    <link rel="stylesheet" href={%static "style/reset.css"%}>
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <a href="/" class="btn-back">Back to Main</a>
+        </div>
         
         <h1 class="label-test-tasks">Тестовые задания</h1>
         <p class="label-check">Проверь свои знания</p>  
 
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="cards-grid">
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card green"></div>
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card pink"></div>
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card pink"></div>
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card green"></div>
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card green"></div>
-        <div onclick="window.location.href='{% url 'testner' %}'"  class="card pink"></div>
+        <div class="cards-grid" id="cards-grid">
+        <!-- <div class="card">
+            <div class="header">
+                <h1 class="theme">Present Simple</h1>
+            </div>
+            <p class="type">Type: Grammar</p>
+            <p class="number-of-questions">Questions: 2</p>
+            <img src="/images/icon_correct.svg">
         </div>
-
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div> -->
+        </div>
     </div>
+    <script src={%static "script/script_tests.js"%}></script>
 </body>
 </html>

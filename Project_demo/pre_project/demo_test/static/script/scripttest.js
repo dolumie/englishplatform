@@ -1,100 +1,142 @@
-const questions = [
-    {
-        question: "Alex ... to the college every day",
-        answers: [
-                { text: "goes", correct: true},
-                { text: "went", correct: false},
-                { text: "go", correct: false},
-                { text: "gone", correct: false},
-        ]
-    },
-    {
-        question: "... Doluma do her homework yesterday?",
-        answers: [
-                { text: "did", correct: true},
-                { text: "do", correct: false},
-                { text: "does", correct: false},
-                { text: "done", correct: false},
-        ]
+document.addEventListener('DOMContentLoaded', function() {
+    const questionElement = document.getElementById('question');
+    const answersContainer = document.getElementById('answers-btn');
+    const nextButton = document.getElementById('btn-next');
+    let currentTest = null;
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+    // Get test ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const testId = urlParams.get('test_id');
+
+    // Fetch test data
+    if (testId) {
+        fetch(`/api/get-test/${testId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    currentTest = data;
+                    showQuestion(currentQuestionIndex);
+                }
+            })
+            .catch(error => console.error('Error:', error));
     }
-];
 
-const questionElement = document.getElementById("question");
-const answersButton = document.getElementById("answers-btn");
-const nextButton = document.getElementById("btn-next");
-let currentQuestionIndex = 0;
-let score = 0;
-
-function startQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "Next";
-    showQuestion();
-}
-
-function showQuestion() {
-    resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNum = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNum + ". " + currentQuestion.question;
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        answersButton.appendChild(button);
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
+    function showQuestion(index) {
+        const questions = currentTest.content.Questions;
+        if (index >= questions.length) {
+            showResults();
+            return;
         }
-        button.addEventListener("click", selectAnswer);
-    });
-}
 
-function resetState() {
-    nextButton.style.display = "none";
-    while (answersButton.firstChild) {
-        answersButton.removeChild(answersButton.firstChild);
-    }
-}
+        const question = questions[index];
+        questionElement.textContent = question.Question;
 
-function selectAnswer(e) {
-    const selectedButton = e.target;
-    const isCorrect = selectedButton.dataset.correct === "true";
-    if (isCorrect) {
-        selectedButton.classList.add("correct");
-        score++;
-    }
-        else {
-        selectedButton.classList.add("wrong");
-    }
-    Array.from(answersButton.children).forEach(button=> {
-        if (button.dataset.correct === "true") {
-            button.classList.add("correct");
+        // Clear previous answers
+        answersContainer.innerHTML = '';
+
+        // Create answer buttons
+        question.Answers.forEach((answer, answerIndex) => {
+            const button = document.createElement('button');
+            button.className = 'btn';
+            button.textContent = answer;
+            button.addEventListener('click', () => selectAnswer(answerIndex + 1));
+            answersContainer.appendChild(button);
+        });
+
+        // Create next button container if it doesn't exist
+        let nextButtonContainer = document.querySelector('.next-button-container');
+        if (!nextButtonContainer) {
+            nextButtonContainer = document.createElement('div');
+            nextButtonContainer.className = 'next-button-container';
+            nextButtonContainer.appendChild(nextButton);
+            document.querySelector('.container').appendChild(nextButtonContainer);
         }
-        button.disabled = true;
-    });
-    nextButton.style.display = "inline-block";
-}
 
-function showScore() {
-    resetState();
-    questionElement.innerHTML = `Your score: ${score} of ${questions.length}`;
-}
-function handleNextButton() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
+        // Hide next button until answer is selected
+        nextButton.style.display = 'none';
     }
-    else {
-        showScore();
+
+    function selectAnswer(answerNumber) {
+        // Remove active class from all buttons
+        const buttons = answersContainer.querySelectorAll('.btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Add active class to selected button
+        buttons[answerNumber - 1].classList.add('active');
+
+        // Store the answer
+        userAnswers[currentQuestionIndex] = answerNumber;
+
+        // Show next button
+        nextButton.style.display = 'block';
     }
-}
-nextButton.addEventListener("click", ()=> {
-    if (currentQuestionIndex < questions.length) {
-        handleNextButton();
+
+    nextButton.addEventListener('click', () => {
+        if (currentQuestionIndex < currentTest.content.Questions.length - 1) {
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex);
+        } else {
+            showResults();
+        }
+    });
+
+    function getFeedbackMessage(percentage) {
+        if (percentage >= 90) {
+            return {
+                message: "Excellent! You're a master!",
+                class: "excellent"
+            };
+        } else if (percentage >= 70) {
+            return {
+                message: "Great job! Keep it up!",
+                class: "good"
+            };
+        } else if (percentage >= 50) {
+            return {
+                message: "Good effort! Room for improvement.",
+                class: "average"
+            };
+        } else {
+            return {
+                message: "Keep practicing! You'll get better!",
+                class: "needs-improvement"
+            };
+        }
     }
-    else {
-        startQuiz();
+
+    function showResults() {
+        const questions = currentTest.content.Questions;
+        let score = 0;
+
+        // Calculate score
+        questions.forEach((question, index) => {
+            if (userAnswers[index] === question.Num_Right_Answer) {
+                score++;
+            }
+        });
+
+        // Calculate percentage
+        const percentage = Math.round((score / questions.length) * 100);
+        const feedback = getFeedbackMessage(percentage);
+
+        // Show results
+        const container = document.querySelector('.container');
+        container.innerHTML = `
+            <div class="header">
+                <h1>Test Results</h1>
+            </div>
+            <div class="test-results">
+                <div class="results-stats">
+                    <div class="score">Score: ${score}/${questions.length}</div>
+                    <div class="percentage">${percentage}%</div>
+                </div>
+                <div class="feedback ${feedback.class}">
+                    ${feedback.message}
+                </div>
+                <button class="btn" onclick="window.location.href='/tests'">Back to Tests</button>
+            </div>
+        `;
     }
 });
-
-startQuiz();
