@@ -1,0 +1,59 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning English</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap" rel="stylesheet">
+    <!-- fonts -->
+    <link rel="stylesheet" href={% static "style/reset.css"%}>
+    <link rel="stylesheet" href={% static "style/index_style.css" %}?version=2>
+
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <!-- <img src="./images/circle.svg" alt="Лого" class="logo"> -->
+            <button class="btn-username">имя пользователя</button>
+        </header>
+    
+        <main>
+
+            <div class="word-of-the-day">
+                <div class="commas">“</div>
+                
+                        <h1 class="word-translate" id="word">endearing</h1>
+                        <h1 class="word-translate" id="translate"> ( arousing feelings of affection
+                                or admiration )</h1>
+
+                    <p class="label-word-of-the-day">СЛОВО ДНЯ</p>
+            </div>
+                
+            <div class="buttons">
+               
+                <button onclick="window.location.href='{% url 'tests' %}'" class="btn tests">тесты</button>
+                <button class="btn rules">правила</button>
+                <button class="btn dict" onclick="window.location.href='{% url 'dictionary' %}'">словарь</button>
+            </div>
+                
+        </main>
+    </div>
+    <script>
+        function fetchData() {
+            fetch('api/update-word')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('word').textContent = data.word;
+                    document.getElementById('translate').textContent = data.translate;
+                });
+        }
+        fetchData();
+        setInterval(fetchData, 10000);
+    </script>
+</body>
+</html>
